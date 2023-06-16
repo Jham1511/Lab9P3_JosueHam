@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include "Paypal.h"
 using namespace std;
 class AdministradoraArchivos
 {
@@ -10,5 +11,5 @@ private:
 public: 
 	AdministradoraArchivos();
 	AdministradoraArchivos(fstream);
-	void cargarUsuarios();
+	void cargarUsuarios(Paypal*);
 };

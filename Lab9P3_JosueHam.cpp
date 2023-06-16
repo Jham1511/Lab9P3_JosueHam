@@ -21,19 +21,44 @@ int menu() {
 int main()
 {
 	int opcionIngresada = menu();
+	Paypal* cuenta = new Paypal();
 	while (opcionIngresada!= 6) {
 		switch (opcionIngresada) {
 		case 1: {
 			cout << "Bienvenido a crear cuenta de Paypal" << endl;
 			printf("\n");
-			Paypal* cuenta = new Paypal();
-			UsuarioPaypal user;
-			cuenta->crearCuenta(user);
 			
+			UsuarioPaypal* user = new UsuarioPaypal;
+			cuenta->crearCuenta(user);
 			break;
 		}
 		case 2: {
+			cout << "Bienvenido a crear wallet" << endl;
+			printf("\n");
 
+			cout << "Ingrese el nombre de usuario para la wallet" << endl;
+			string nomUsuarioWallet;
+			cin >> nomUsuarioWallet;
+
+			cout << "Tiene una cuenta de Paypal?" << endl
+				<< "1 -> Si" << endl
+				<< "2 -> No" << endl;
+			int cuentaExistente;
+			cin >> cuentaExistente;
+			switch (cuentaExistente)
+			{
+			case 1: {
+
+				break;
+			}
+			case 2: {
+
+				break;
+			}
+			default:
+				break;
+			}
+				
 			break;
 		}
 		case 3: {

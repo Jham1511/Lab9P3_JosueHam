@@ -7,11 +7,11 @@ using namespace std;
 class Paypal
 {
 private: 
-	vector<UsuarioPaypal> *usuarios = new vector<UsuarioPaypal>;
+	vector<UsuarioPaypal*> usuarios;
 public:
 	Paypal();
 	~Paypal();
-	void agregarUsuario(UsuarioPaypal);
+	void agregarUsuario(UsuarioPaypal*);
 	void eliminarUsuario(UsuarioPaypal, int);
-	void crearCuenta(UsuarioPaypal);
+	void crearCuenta(UsuarioPaypal* );
 };
