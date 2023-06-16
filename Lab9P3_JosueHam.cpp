@@ -26,9 +26,10 @@ int main()
 		case 1: {
 			cout << "Bienvenido a crear cuenta de Paypal" << endl;
 			printf("\n");
-			Paypal* cuenta = nullptr;
-			UsuarioPaypal* user;
+			Paypal* cuenta = new Paypal();
+			UsuarioPaypal user;
 			cuenta->crearCuenta(user);
+			
 			break;
 		}
 		case 2: {

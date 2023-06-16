@@ -28,8 +28,8 @@ string UsuarioPaypal::getNumIdentidad() {
 	return this->numeroIdentidad;
 }
 
-string UsuarioPaypal::getNumIdentidad() {
-	return this->numeroIdentidad;
+string UsuarioPaypal::getPassword() {
+	return this->password;
 }
 
 double UsuarioPaypal::getSaldo() {
