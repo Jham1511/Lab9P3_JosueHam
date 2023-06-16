@@ -12,4 +12,6 @@ public:
 	UsuarioPaypal(string, string, string);
 	~UsuarioPaypal();
 	void historial();
+	string getNombreUsuario();
+	void setNombreUsuario(string);
 };

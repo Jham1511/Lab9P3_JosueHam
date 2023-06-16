@@ -8,6 +8,8 @@ class Wallet
 private:
 	string nombreUsuario, password;
 	Paypal cuenta;
+	double DogeCoin;
+	int ethereum, WalterCoin;
 public: 
 	void comprar();
 	void venta();

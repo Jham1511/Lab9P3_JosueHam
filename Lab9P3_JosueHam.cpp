@@ -1,4 +1,8 @@
 #include <iostream>
+#include "Paypal.h"
+#include "UsuarioPaypal.h"
+#include "AdministradoraArchivos.h"
+#include "Wallet.h"
 using namespace std;
 int menu() {
 	cout << "\nMenu del Programa" << endl
@@ -20,7 +24,10 @@ int main()
 	while (opcionIngresada!= 6) {
 		switch (opcionIngresada) {
 		case 1: {
-
+			cout << "Bienvenido a crear cuenta de Paypal" << endl;
+			printf("\n");
+			Paypal cuenta;
+			cuenta.crearCuenta();
 			break;
 		}
 		case 2: {
