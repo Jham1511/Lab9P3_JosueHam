@@ -12,5 +12,5 @@ public:
 	~Paypal();
 	void agregarUsuario();
 	void eliminarUsuario();
-	void crearCuenta();
+	void crearCuenta(UsuarioPaypal*);
 };

@@ -14,4 +14,10 @@ public:
 	void historial();
 	string getNombreUsuario();
 	void setNombreUsuario(string);
+	string getNumIdentidad();
+	void setNumIdentidad(string);
+	string getPassword();
+	void setPassword(string);
+	double getSaldo();
+	void setSaldo(double);
 };

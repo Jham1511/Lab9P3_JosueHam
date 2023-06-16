@@ -26,8 +26,9 @@ int main()
 		case 1: {
 			cout << "Bienvenido a crear cuenta de Paypal" << endl;
 			printf("\n");
-			Paypal cuenta;
-			cuenta.crearCuenta();
+			Paypal* cuenta = nullptr;
+			UsuarioPaypal* user;
+			cuenta->crearCuenta(user);
 			break;
 		}
 		case 2: {
@@ -49,6 +50,7 @@ int main()
 		default:
 			cout << "..." << endl;
 			printf("\n");
+			
 		}//Fin del switch
 		opcionIngresada = menu();
 	}//Fin del while
