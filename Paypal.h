@@ -14,4 +14,5 @@ public:
 	void agregarUsuario(UsuarioPaypal*);
 	void eliminarUsuario(UsuarioPaypal, int);
 	void crearCuenta(UsuarioPaypal* );
+	vector<UsuarioPaypal*> getUsuarios();
 };

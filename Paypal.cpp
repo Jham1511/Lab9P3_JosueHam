@@ -5,7 +5,10 @@ Paypal::Paypal() {
 }
 
 Paypal::~Paypal() {
-	
+	for (int i = 0; i < usuarios.size(); i++)
+	{
+		delete[] usuarios[i];
+	}
 }
 
 void Paypal::agregarUsuario(UsuarioPaypal* usuario) {
@@ -73,7 +76,7 @@ void Paypal::crearCuenta(UsuarioPaypal* user) {
 			}
 			if (contadorCaracterEspecial > 1 && tieneLetras && tieneNumeros)
 			{
-				user->setNumIdentidad(password);
+				user->setPassword(password);
 			}
 		}
 		else {
@@ -97,21 +100,26 @@ void Paypal::crearCuenta(UsuarioPaypal* user) {
 			}
 			if (contadorCaracterEspecial > 1 && tieneLetras && tieneNumeros)
 			{
-				user->setNumIdentidad(password);
+				user->setPassword(password);
 			}
 		}
 
 		string ID = numIdentidad + ".lab";
 		fstream archivoUsuario(ID, ios::in | ios::binary);
+
 		if (archivoUsuario.fail())
 		{
 			cout << "No se pudo crear el archivo" << endl;
 		}
 		else {
-			archivoUsuario.write(reinterpret_cast<const char*> (&user), sizeof(Paypal));
+			archivoUsuario.write(reinterpret_cast<char*> (&user), sizeof(UsuarioPaypal));
 			archivoUsuario.close();
 		}
 		
 	}
 	agregarUsuario(user);
+}
+
+vector<UsuarioPaypal*> Paypal::getUsuarios() {
+	return usuarios;
 }
