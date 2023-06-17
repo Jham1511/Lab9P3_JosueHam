@@ -14,8 +14,6 @@ public:
 	Wallet();
 	Wallet(string, string, Paypal*);
 	~Wallet();
-	void comprar();
-	void venta();
 	void setNombreUsuario(string);
 	void setContrasena(string);
 	void setCuenta(Paypal*);

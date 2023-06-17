@@ -240,6 +240,14 @@ int main()
 				if (nomUsuario == carteras[i]->getNombre() && contrasena == carteras[i]->getContrasena())
 				{
 					Wallet* billetera = carteras[i];
+					UsuarioPaypal* usuarioRegistrado = new UsuarioPaypal();
+					for (int i = 0; i < cuenta->getUsuarios().size(); i++)
+					{
+						if (cuenta->getUsuarios()[i]->getNombreUsuario() == nomUsuario)
+						{
+							usuarioRegistrado = cuenta->getUsuarios()[i];
+						}
+					}
 					cout << "--Bienvenido--" << endl
 						<< "1 -> Ver estado de cuenta" << endl
 						<< "2 -> Comprar Cryptos" << endl
@@ -253,6 +261,87 @@ int main()
 					case 1: {
 						estadoWallet(billetera);
 						break;
+					}
+					case 2: {
+						cout << "Bienvenido a comprar Cryptos" << endl
+							<< "1 -> DogeCoin" << endl
+							<< "2 -> Ethereum" << endl
+							<< "3 -> WalterCoin" << endl
+							<< "4 -> Regresar" << endl;
+						int opcionCryptos;
+						cin >> opcionCryptos;
+
+						switch (opcionCryptos)
+						{
+						case 1: {
+							cout << "Ingrese la cantidad de DogeCoin que desea comprar: " << endl 
+								 << "Nota!: Valor de DogeCoin es de 0.6 dolares" << endl;
+							int cantidadDogeCoin;
+							cin >> cantidadDogeCoin;
+
+							int dogeActual = billetera->getDogeCoin();
+							double valor = 0.6 * cantidadDogeCoin;
+							double saldoActual = usuarioRegistrado->getSaldo();
+							if (usuarioRegistrado->getSaldo() >= valor )
+							{
+
+								billetera->setDogeCoin(cantidadDogeCoin + dogeActual);
+								usuarioRegistrado->setSaldo(saldoActual - valor);
+								cout << "Compra con exito" << endl;
+							}
+							else {
+								cout << "No dispone de los suficientes fondos" << endl;
+							}
+							
+						}
+						case 2: {
+							cout << "Ingrese la cantidad de Ethereum que desea comprar: " << endl
+								<< "Nota!: Valor de Ethereum es de 1000 dolares" << endl;
+							int cantidadEthereum;
+							cin >> cantidadEthereum;
+
+							int EthereumActual = billetera->getDogeCoin();
+							double valor = 0.6 * cantidadEthereum;
+							double saldoActual = usuarioRegistrado->getSaldo();
+							if (usuarioRegistrado->getSaldo() >= valor)
+							{
+
+								billetera->setDogeCoin(cantidadEthereum + EthereumActual);
+								usuarioRegistrado->setSaldo(saldoActual - valor);
+								cout << "Compra con exito" << endl;
+							}
+							else {
+								cout << "No dispone de los suficientes fondos" << endl;
+							}
+							break;
+						}
+						case 3: {
+							cout << "Ingrese la cantidad de WalterCoin que desea comprar: " << endl
+								<< "Nota!: Valor de WalterCoin es de 5 dolares" << endl;
+							int cantidadWalterCoin;
+							cin >> cantidadWalterCoin;
+
+							int walterActual = billetera->getDogeCoin();
+							double valor = 0.6 * cantidadWalterCoin;
+							double saldoActual = usuarioRegistrado->getSaldo();
+							if (usuarioRegistrado->getSaldo() >= valor)
+							{
+
+								billetera->setDogeCoin(cantidadWalterCoin + walterActual);
+								usuarioRegistrado->setSaldo(saldoActual - valor);
+								cout << "Compra con exito" << endl;
+							}
+							else {
+								cout << "No dispone de los suficientes fondos" << endl;
+							}
+						}
+						default:
+							break;
+						}
+						break;
+					}
+					case 3: {
+
 					}
 					default:
 						break;
