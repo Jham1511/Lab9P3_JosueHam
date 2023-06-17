@@ -18,6 +18,57 @@ int menu() {
 	return numero;
 }
 
+bool contrasenaValida(string passwordWallet) {
+	int contadorCaracterEspecial = 0;
+	bool tieneNumeros = false; //Sirve para validar si la contraseña tiene numeros
+	bool tieneLetras = false;
+	bool valido = false;
+	if (passwordWallet.length() >= 7) {
+		for (char caracter : passwordWallet)
+		{
+			if (caracter >= 33 && caracter <= 47)
+			{
+				contadorCaracterEspecial++;
+			}
+			else if (caracter >= 48 && caracter <= 57) {
+				tieneNumeros = true;
+			}
+			else if (caracter >= 65 && caracter <= 90)
+			{
+				tieneLetras = true;
+			}
+		}
+		if (contadorCaracterEspecial > 1 && tieneLetras && tieneNumeros)
+		{
+			valido = true;
+		}
+	}
+	else {
+		while (passwordWallet.length() < 7) {
+			cout << "Ingrese la contrasena de la cuenta, tiene que ser alfanumerica" << endl;
+			cin >> passwordWallet;
+		}
+		for (char caracter : passwordWallet)
+		{
+			if (caracter >= 33 && caracter <= 47)
+			{
+				contadorCaracterEspecial++;
+			}
+			else if (caracter >= 48 && caracter <= 57) {
+				tieneNumeros = true;
+			}
+			else if (caracter >= 65 && caracter <= 90)
+			{
+				tieneLetras = true;
+			}
+		}
+		if (contadorCaracterEspecial > 1 && tieneLetras && tieneNumeros)
+		{
+			valido = true;
+		}
+	}
+	return valido;
+}
 int main()
 {
 	int opcionIngresada = menu();
@@ -41,7 +92,8 @@ int main()
 			string nomUsuarioWallet;
 			cin >> nomUsuarioWallet;
 
-			cartera->
+			cartera->setNombreUsuario(nomUsuarioWallet);
+
 			cout << "Tiene una cuenta de Paypal?" << endl
 				<< "1 -> Si" << endl
 				<< "2 -> No" << endl;
@@ -61,8 +113,9 @@ int main()
 						cout << "Ingrese el nombre de usuario de la cuenta de nuevo" << endl;
 						cin >> nomUsuarioPaypal;
 					}
-
+					cartera->setCuenta(cuenta);
 				}
+				
 				break;
 			}
 			case 2: {
@@ -87,53 +140,13 @@ int main()
 			cout << "Ingrese la contrasena de la wallet" << endl;
 			string passwordWallet;
 			cin >> passwordWallet;
-			int contadorCaracterEspecial = 0;
-			bool tieneNumeros = false; //Sirve para validar si la contraseña tiene numeros
-			bool tieneLetras = false;
-			if (passwordWallet.length() >= 7) {
-				for (char caracter : passwordWallet)
-				{
-					if (caracter >= 33 && caracter <= 47)
-					{
-						contadorCaracterEspecial++;
-					}
-					else if (caracter >= 48 && caracter <= 57) {
-						tieneNumeros = true;
-					}
-					else if (caracter >= 65 && caracter <= 90)
-					{
-						tieneLetras = true;
-					}
-				}
-				if (contadorCaracterEspecial > 1 && tieneLetras && tieneNumeros)
-				{
-					
-				}
+			
+			if (contrasenaValida(passwordWallet) == true)
+			{
+				cartera->setContrasena(passwordWallet);
 			}
-			else {
-				while (passwordWallet.length() < 7) {
-					cout << "Ingrese la contrasena de la cuenta, tiene que ser alfanumerica" << endl;
-					cin >> passwordWallet;
-				}
-				for (char caracter : passwordWallet)
-				{
-					if (caracter >= 33 && caracter <= 47)
-					{
-						contadorCaracterEspecial++;
-					}
-					else if (caracter >= 48 && caracter <= 57) {
-						tieneNumeros = true;
-					}
-					else if (caracter >= 65 && caracter <= 90)
-					{
-						tieneLetras = true;
-					}
-				}
-				if (contadorCaracterEspecial > 1 && tieneLetras && tieneNumeros)
-				{
-					
-				}
-			}
+			
+			cout << "Cartera creada correctamente" << endl;
 			break;
 		}
 		case 3: {
