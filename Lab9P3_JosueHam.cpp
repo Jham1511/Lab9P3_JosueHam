@@ -18,6 +18,17 @@ int menu() {
 	return numero;
 }
 
+void estadoWallet(Wallet* carte) {
+	cout << "Nombre de usuario: " << carte->getNombre() << endl
+		<< "Cantidad de DogeCoin: " << carte->getDogeCoin() << endl
+		<< "Cantidad de Ethereum: " << carte->getEthereum() << endl
+		<< "Cantidad de WalterCoin: " << carte->getWalterCoin() << endl;
+}
+void estadoCuentaUsuario(UsuarioPaypal* account) {
+	cout << "Nombre: " << account->getNombreUsuario() << endl
+		<< "Numero de Identidad: " << account->getNumIdentidad() << endl
+		<< "Saldo: " << account->getSaldo() << endl;
+}
 bool contrasenaValida(string passwordWallet) {
 	int contadorCaracterEspecial = 0;
 	bool tieneNumeros = false; //Sirve para validar si la contraseña tiene numeros
@@ -74,6 +85,7 @@ int main()
 	int opcionIngresada = menu();
 	Paypal* cuenta = new Paypal();
 	Wallet* cartera = new Wallet;
+	vector <Wallet*> carteras;
 	while (opcionIngresada!= 6) {
 		switch (opcionIngresada) {
 		case 1: {
@@ -146,6 +158,7 @@ int main()
 				cartera->setContrasena(passwordWallet);
 			}
 			
+			carteras.push_back(cartera);
 			cout << "Cartera creada correctamente" << endl;
 			break;
 		}
@@ -154,11 +167,102 @@ int main()
 			break;
 		}
 		case 4: {
+			cout << "--Iniciar Sesion en Paypal--" << endl;
+			cout << "Ingrese su usuario" << endl;
+			string nomUsuario;
+			cin >> nomUsuario;
+			cout << "Ingrese su contrasena" << endl;
+			string contrasena;
+			cin >> contrasena;
+			for (int i = 0; i < cuenta->getUsuarios().size(); i++)
+			{
+				if (nomUsuario == cuenta->getUsuarios()[i]->getNombreUsuario() && contrasena == cuenta->getUsuarios()[i]->getPassword())
+				{
+					UsuarioPaypal* account = cuenta->getUsuarios()[i];
+					cout << "--Bienvenido--" << endl
+						<< "1 -> Ver estado de cuenta" << endl
+						<< "2 -> Hacer deposito a mi cuenta propia" << endl
+						<< "3 -> Hacer retiro de mi cuenta" << endl
+						<< "4 -> Ver historial de cuenta" << endl
+						<< "5 -> Salir" << endl
+						<< "Seleccione" << endl;
+					int seleccionPaypal;
+					cin >> seleccionPaypal;
+					switch (seleccionPaypal)
+					{
+					case 1: {
+						estadoCuentaUsuario(account);
+						printf("\n");
+						break;
+					}
+					case 2: {
+						cout << "Ingrese la cantidad que desea depositar" << endl;
+						double deposito;
+						cin >> deposito;
 
+						double saldoActual = account->getSaldo();
+						account->setSaldo(saldoActual + deposito);
+						double saldoActualizado = account->getSaldo();
+						cout << "Nuevo balance: " << saldoActualizado;
+						break;
+					}
+					case 3: {
+						cout << "Ingrese la cantidad que desea retirar" << endl;
+						double retiro;
+						cin >> retiro;
+
+						double saldoActual = account->getSaldo();
+						account->setSaldo(saldoActual - retiro);
+						double saldoActualizado = account->getSaldo();
+						cout << "Nuevo balance: " << saldoActualizado;
+						break;
+					}
+					default:
+						break;
+					}
+				}
+				else {
+					cout << "Datos invalidos" << endl;
+				}
+			}
 			break;
 		}
 		case 5: {
+			cout << "--Iniciar Sesion Wallet--" << endl;
+			cout << "Ingrese su usuario" << endl;
+			string nomUsuario;
+			cin >> nomUsuario;
+			cout << "Ingrese su contrasena" << endl;
+			string contrasena;
+			cin >> contrasena;
+			for (int i = 0; i < carteras.size(); i++)
+			{
+				if (nomUsuario == carteras[i]->getNombre() && contrasena == carteras[i]->getContrasena())
+				{
+					Wallet* billetera = carteras[i];
+					cout << "--Bienvenido--" << endl
+						<< "1 -> Ver estado de cuenta" << endl
+						<< "2 -> Comprar Cryptos" << endl
+						<< "3 -> Vender Cryptos" << endl
+						<< "4 -> Salir" << endl
+						<< "Seleccione" << endl;
+					int seleccionWallet;
+					cin >> seleccionWallet;
+					switch (seleccionWallet)
+					{
+					case 1: {
+						estadoWallet(billetera);
+						break;
+					}
+					default:
+						break;
+					}
 
+				}
+				else {
+					cout << "Datos invalidos" << endl;
+				}
+			}
 			break;
 		}
 		default:
