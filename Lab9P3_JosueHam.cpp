@@ -300,13 +300,13 @@ int main()
 							int cantidadEthereum;
 							cin >> cantidadEthereum;
 
-							int EthereumActual = billetera->getDogeCoin();
-							double valor = 0.6 * cantidadEthereum;
+							int EthereumActual = billetera->getEthereum();
+							double valor = 1000 * cantidadEthereum;
 							double saldoActual = usuarioRegistrado->getSaldo();
 							if (usuarioRegistrado->getSaldo() >= valor)
 							{
 
-								billetera->setDogeCoin(cantidadEthereum + EthereumActual);
+								billetera->setEthereum(cantidadEthereum + EthereumActual);
 								usuarioRegistrado->setSaldo(saldoActual - valor);
 								cout << "Compra con exito" << endl;
 							}
@@ -321,13 +321,13 @@ int main()
 							int cantidadWalterCoin;
 							cin >> cantidadWalterCoin;
 
-							int walterActual = billetera->getDogeCoin();
-							double valor = 0.6 * cantidadWalterCoin;
+							int walterActual = billetera->getWalterCoin();
+							double valor = 5 * cantidadWalterCoin;
 							double saldoActual = usuarioRegistrado->getSaldo();
 							if (usuarioRegistrado->getSaldo() >= valor)
 							{
 
-								billetera->setDogeCoin(cantidadWalterCoin + walterActual);
+								billetera->setWalterCoin(cantidadWalterCoin + walterActual);
 								usuarioRegistrado->setSaldo(saldoActual - valor);
 								cout << "Compra con exito" << endl;
 							}
@@ -341,8 +341,60 @@ int main()
 						break;
 					}
 					case 3: {
+						cout << "Bienvenido a vender Cryptos" << endl
+							<< "1 -> DogeCoin" << endl
+							<< "2 -> Ethereum" << endl
+							<< "3 -> WalterCoin" << endl
+							<< "4 -> Regresar" << endl;
+						int opcionCryptos;
+						cin >> opcionCryptos;
 
-					}
+						switch (opcionCryptos)
+						{
+						case 1: {
+							cout << "Ingrese la cantidad de DogeCoin que desea vender: " << endl
+								<< "Nota!: Valor de DogeCoin es de 0.6 dolares" << endl;
+							int cantidadDogeCoin;
+							cin >> cantidadDogeCoin;
+
+							int dogeActual = billetera->getDogeCoin();
+							double valor = 0.6 * cantidadDogeCoin;
+							double saldoActual = usuarioRegistrado->getSaldo();
+							if (billetera->getDogeCoin() >= 1)
+							{
+
+								billetera->setDogeCoin(cantidadDogeCoin - dogeActual);
+								usuarioRegistrado->setSaldo(saldoActual + valor);
+								cout << "Venta con exito" << endl;
+							}
+							break;
+						}
+						case 2: {
+							cout << "Ingrese la cantidad de Ethereum que desea vender: " << endl
+								<< "Nota!: Valor de Ethereum es de 1000 dolares" << endl;
+							int cantidadDogeCoin;
+							cin >> cantidadDogeCoin;
+
+							int ethActual = billetera->getEthereum();
+							double valor = 0.6 * cantidadDogeCoin;
+							double saldoActual = usuarioRegistrado->getSaldo();
+							if (billetera->getEthereum() >= 1)
+							{
+
+								billetera->setEthereum(cantidadDogeCoin - ethActual);
+								usuarioRegistrado->setSaldo(saldoActual + valor);
+								cout << "Venta con exito" << endl;
+							}
+							break;
+						}
+						case 3: {
+
+							break;
+						}
+						default:
+							break;
+						}
+					}//Vender cryptos
 					default:
 						break;
 					}
